@@ -22,6 +22,12 @@ public class MemberRepository {
 
     // 구현
     public Member findByEmail(String email) {
+        for(Long id : store.keySet()){
+            Member nowMember = store.get(id);
+            if(nowMember.getEmail().equals(email)){
+                return nowMember;
+            }
+        }
         return null;
     }
 }
