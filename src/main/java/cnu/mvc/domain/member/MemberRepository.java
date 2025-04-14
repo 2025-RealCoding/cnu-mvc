@@ -22,7 +22,12 @@ public class MemberRepository {
 
     // 구현
     public Member findByEmail(String email) {
-        return null;
+        // store에 저장된 모든 member를 돌며 이메일이 일치하는 경우 반환
+        return store.values()
+                .stream()
+                .filter(member -> member.getEmail().equals(email))
+                .findFirst()
+                .orElse(null); // 없으면 null 반환
     }
 }
 
