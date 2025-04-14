@@ -18,7 +18,7 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostConstruct
-    public void init() {
+    public void init() throws Exception {
         memberService.join(new Member("kim", "kim@gmail.com", "010-1234-5678", "1234"));
     }
 
