@@ -21,8 +21,6 @@ public class MemberRepository {
     }
 
     // 구현
-    public Member findByEmail(String email) {
-        return null;
-    }
+    public Member findByEmail(String email) { return store.get(email); }
 }
 
