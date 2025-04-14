@@ -19,7 +19,10 @@ public class MemberService {
     }
 
     public Member validateMember(String email, String pwd) {
-        Member findMember = findById(1L);
+        Member findMember = findByEmail(email);
+        if (findMember == null || !findMember.getPassword().equals(pwd)) {
+            throw new IllegalStateException("이메일 또는 비밀번호를 확인해주세요.");
+        }
         return findMember;
     }
 
