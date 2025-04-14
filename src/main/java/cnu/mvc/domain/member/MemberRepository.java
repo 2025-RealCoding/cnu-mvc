@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Repository
 public class MemberRepository {
@@ -22,6 +23,10 @@ public class MemberRepository {
 
     // 구현
     public Member findByEmail(String email) {
+        for (long i = 1L; i <= sequence; i++) {
+            Member m = store.get(i);
+            if (Objects.equals(m.getEmail(), email)) return m;
+        }
         return null;
     }
 }
