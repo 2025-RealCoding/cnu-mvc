@@ -12,6 +12,8 @@ public class Member {
     private String phoneNumber;
     private String pwd;
 
+    public Member() {}
+    
     public Member(String name, String email, String phoneNumber, String pwd) {
         this.name = name;
         this.email = email;
