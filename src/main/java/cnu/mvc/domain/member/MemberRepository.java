@@ -1,7 +1,5 @@
 package cnu.mvc.domain.member;
-
 import org.springframework.stereotype.Repository;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,10 +17,12 @@ public class MemberRepository {
     public Member findById(Long id) {
         return store.get(id);
     }
-
-    // 구현
     public Member findByEmail(String email) {
+        for(Member m :store.values()){
+            if(m.getEmail().equals(email)){
+                return m;
+            }
+        }
         return null;
     }
 }
-
