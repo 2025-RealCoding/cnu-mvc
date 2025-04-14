@@ -22,7 +22,6 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
-    // 구현
     public Member findByEmail(String email) {
         return memberRepository.findByEmail(email);
     }
