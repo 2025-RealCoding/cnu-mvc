@@ -18,4 +18,5 @@ public class Member {
         this.phoneNumber = phoneNumber;
         this.pwd = pwd;
     }
+    public String getPwd(){return this.pwd;}
 }
