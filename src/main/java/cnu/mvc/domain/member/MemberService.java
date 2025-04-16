@@ -20,7 +20,7 @@ public class MemberService {
     public Member validateMember(String email, String pwd) {
         Member member = findByEmail(email);
         if (member == null || !member.getPwd().equals(pwd)) {
-            throw new IllegalArgumentException("이미 존재하는 이메일 계정입니다.");
+            throw new IllegalArgumentException("이메일 또는 비밀번호를 확인해주세요.");
         }
         return member;
     }
