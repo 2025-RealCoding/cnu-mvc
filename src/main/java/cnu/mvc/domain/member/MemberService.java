@@ -9,12 +9,30 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Member join(Member member){
+    // 수정
+    public Member join(Member member) throws Exception {
+        Member mem = memberRepository.findByEmail(member.getEmail());
+        if(mem == null){
+            memberRepository.save(member);
+        } else {
+            throw new Exception("이미 존재하는 이메일 계정입니다.");
+        }
+
         return memberRepository.save(member);
     }
 
-    public Member validateMember(String email, String pwd) {
-        Member findMember = findById(1L);
+    // 수정
+    public Member validateMember(String email, String pwd) throws Exception {
+        Member findMember = findByEmail(email);
+
+        if(findMember == null){
+            throw new Exception("이메일 또는 비밀번호를 확인해주세요.");
+        }
+
+        if (!pwd.equals(findMember.getPwd())) {
+            throw new Exception("이메일 또는 비밀번호를 확인해주세요.");
+        }
+
         return findMember;
     }
 

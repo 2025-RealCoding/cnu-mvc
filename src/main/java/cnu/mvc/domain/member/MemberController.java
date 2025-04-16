@@ -19,7 +19,11 @@ public class MemberController {
 
     @PostConstruct
     public void init() {
-        memberService.join(new Member("kim", "kim@gmail.com", "010-1234-5678", "1234"));
+        try {
+            memberService.join(new Member("kim", "kim@gmail.com", "010-1234-5678", "1234"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // 회원등록 화면
