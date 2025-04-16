@@ -20,9 +20,12 @@ public class MemberRepository {
         return store.get(id);
     }
 
-    // 구현
     public Member findByEmail(String email) {
+        for(Member member : store.values()) {
+            if(member.getEmail().equals(email)) {
+                return member;
+            }
+        }
         return null;
     }
 }
-
