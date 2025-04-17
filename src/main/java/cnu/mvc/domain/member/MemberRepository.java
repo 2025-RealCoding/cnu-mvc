@@ -21,8 +21,14 @@ public class MemberRepository {
     }
 
     // 구현
+    // 이메일이 일치하는 회원 반환
     public Member findByEmail(String email) {
-        return null;
+        for (Member member : store.values()) {
+            if (member.getEmail().equals(email)) {
+                return member; // 찾으면 반환
+            }
+        }
+        return null; // 없으면 null
     }
 }
 
