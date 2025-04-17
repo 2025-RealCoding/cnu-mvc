@@ -10,6 +10,10 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Member join(Member member){
+        Member existing = memberRepository.findByEmail(member.getEmail());
+        if (existing != null) {
+            throw new IllegalArgumentException("이미 존재하는 이메일 계정입니다.");
+        }
         return memberRepository.save(member);
     }
 
