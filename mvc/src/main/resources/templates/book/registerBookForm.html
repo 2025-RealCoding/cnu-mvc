@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 560px;
+            margin-top: 50px;
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        .form-control {
+            border-radius: 0;
+            border-color: #ddd;
+        }
+        .btn-primary {
+            background-color: #008CBA;
+            border-color: #008CBA;
+        }
+        .btn-secondary {
+            background-color: #ccc;
+            border-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>도서 등록 폼</h2>
+    </div>
+    <h4 class="mb-3">도서 입력</h4>
+    <form action="book.html" th:action method="post">
+        <div class="form-group">
+            <label for="title">도서명</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="author">저자</label>
+            <input type="text" id="author" name="author" class="form-control" placeholder="저자를 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="quantity">수량</label>
+            <input type="text" id="quantity" name="quantity" class="form-control" placeholder="수량을 입력하세요">
+        </div>
+        <div class="my-4">
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">도서 등록</button>
+            </div>
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='books.html'" th:onclick="|location.href='@{/books}'|" type="button">취소</button>
+            </div>
+        </div>
+        </div>
+    </form>
+</div>
+<!-- /container -->
+</body>
+</html>

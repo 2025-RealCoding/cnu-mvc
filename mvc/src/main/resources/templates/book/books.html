@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+        }
+        .header-title {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .btn-add-book {
+            background-color: #FFC107; /* 새로운 색상 */
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .btn-add-book:hover {
+            background-color: #FF9800; /* 호버 시 색상 */
+        }
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .table thead {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .table tbody tr:hover {
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Header Section -->
+    <div class="py-5 text-center">
+        <h2
+                class="header-title">도서 목록</h2>
+    </div>
+    <!-- '도서 등록' Button -->
+    <div class="row mb-3">
+        <div
+                class="col text-end">
+            <button class="btn btn-add-book" onclick="location.href='addForm.html'" th:onclick="|location.href='@{/books/register}'|" type="button">도서 등록</button>
+        </div>
+    </div>
+    <!-- Divider -->
+    <hr class="my-4">
+    <!-- Table Section -->
+    <div>
+        <table class="table table-striped table-bordered shadow-sm">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>제목</th>
+                <th>작가</th>
+                <th>수량</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- If no books are available -->
+            <tr th:if="${books.empty}">
+                <td
+                        colspan="4" class="text-center">등록된 도서가 없습니다.</td>
+            </tr>
+            <!-- Iterate through books -->
+            <tr th:each="book : ${books}">
+                <td
+                        th:text="${book.id}"></td>
+                <td
+
+
+                        th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.quantity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div
+                class="col">
+            <button class="w-100 btn btn-secondary btn-lg" onclick="location.href='/'">홈으로</button>
+        </div>
+    </div>
+</div>
+<!-- /container -->
+</body>
+</html>
