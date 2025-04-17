@@ -10,11 +10,22 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Member join(Member member){
+        Member curMember = memberRepository.findByEmail(member.getEmail());
+
+        if (curMember != null) {
+            throw new RuntimeException("이미 가입한 회원입니다.");
+        }
+
         return memberRepository.save(member);
     }
 
     public Member validateMember(String email, String pwd) {
-        Member findMember = findById(1L);
+        Member findMember = findByEmail(email);
+
+        if (findMember == null || !findMember.getPwd().equals(pwd)) {
+            throw new RuntimeException("이메일이나 비밀번호를 확인해주세요.");
+        }
+
         return findMember;
     }
 
