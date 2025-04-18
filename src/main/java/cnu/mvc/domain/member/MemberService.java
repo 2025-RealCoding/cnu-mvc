@@ -9,12 +9,20 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Member join(Member member){
+    public Member join(Member member) {
+        // 이메일 중복 검증
+        Member existingMember = findByEmail(member.getEmail());
+        if (existingMember != null) {
+            throw new IllegalStateException("이미 존재하는 이메일 계정입니다.");
+        }
         return memberRepository.save(member);
     }
 
     public Member validateMember(String email, String pwd) {
-        Member findMember = findById(1L);
+        Member findMember = findByEmail(email);
+        if (findMember == null || !findMember.getPwd().equals(pwd)) {
+            throw new IllegalStateException("이메일 또는 비밀번호가 일치하지 않습니다.");
+        }
         return findMember;
     }
 
@@ -22,7 +30,6 @@ public class MemberService {
         return memberRepository.findById(id);
     }
 
-    // 구현
     public Member findByEmail(String email) {
         return memberRepository.findByEmail(email);
     }
