@@ -10,12 +10,25 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Member join(Member member){
+        // 이메일 중복 검사
+        if (memberRepository.findByEmail(member.getEmail()) != null) {
+            throw new IllegalArgumentException("이미 존재하는 이메일 계정입니다."); // 검증 실패
+        }
+        // 회원 저장
         return memberRepository.save(member);
     }
 
     public Member validateMember(String email, String pwd) {
-        Member findMember = findById(1L);
-        return findMember;
+        // 이메일로 회원 조회
+        Member member = memberRepository.findByEmail(email);
+
+        // 이메일 또는 비밀번호가 잘못된 경우 예외 발생
+        if (member == null || !member.getPwd().equals(pwd)) {
+            throw new IllegalArgumentException("이메일 또는 비밀번호를 확인해주세요."); // 검증 실패
+        }
+
+        // 검증 성공 시 회원 객체 반환
+        return member;
     }
 
     public Member findById(Long id) {
