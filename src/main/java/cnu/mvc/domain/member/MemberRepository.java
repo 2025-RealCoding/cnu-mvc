@@ -22,6 +22,13 @@ public class MemberRepository {
 
     // 구현
     public Member findByEmail(String email) {
+        for (Member m : store.values()) {
+            if (m.getEmail().trim().equals(email.trim())) {
+                System.out.println("이메일 일치: " + email);
+                return m;
+            }
+        }
+        System.out.println("이메일 없음: " + email);
         return null;
     }
 }
