@@ -16,13 +16,18 @@ public class MemberRepository {
         store.put(member.getId(), member);
         return member;
     }
+
     public Member findById(Long id) {
         return store.get(id);
     }
 
-    // 구현
+    // 1-1) 이메일로 회원 조회
     public Member findByEmail(String email) {
+        for (Member member : store.values()) {
+            if (member.getEmail().equals(email)) {
+                return member;
+            }
+        }
         return null;
     }
 }
-
